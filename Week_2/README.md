@@ -47,8 +47,8 @@ npm install readline-sync
 ```
 
 ## Kontributor
-- **Nama Kamu**  
-  Mahasiswa **Cakrawala University** - Semester 1 - Program Studi **Sains Data**
+- **Muhammad Abdullah**  
+  Mahasiswa **Cakrawala University** - Semester 2 - Program Studi **Sains Data**
 
 ## Lisensi
 Proyek ini dilisensikan di bawah **ISC License**.
