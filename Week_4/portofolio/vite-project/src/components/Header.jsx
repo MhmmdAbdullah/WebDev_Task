@@ -1,19 +1,57 @@
-export default function Header() {
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+
+export default function Header({ darkMode, setDarkMode }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   return (
-    <header className="fixed top-0 left-0 right-0 bg-green-900 z-50">
+    <header className="fixed w-full bg-white dark:bg-gray-800 shadow-md z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <span className="text-white font-poppins">@Muhammad_Abdullah</span>
-        {/* Menu desktop */}
-        <nav className="hidden md:flex gap-6">
-          <a href="#about" className="text-white hover:text-green-200">About</a>
-          <a href="#work" className="text-white hover:text-green-200">Work</a>
-          <a href="#contact" className="text-white hover:text-green-200">Contact</a>
+        <a href="#" className="text-xl font-bold text-gray-800 dark:text-white">
+          @Muhammad_Abdullah
+        </a>
+        
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-8">
+          {['About', 'Work', 'Contact'].map((item) => (
+            <a 
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="text-gray-600 dark:text-gray-300 hover:text-green-500 transition-colors"
+            >
+              {item}
+            </a>
+          ))}
         </nav>
-        {/* Menu mobile */}
-        <button className="md:hidden text-white">
+
+        {/* Mobile Menu Button */}
+        <button 
+          className="md:hidden text-gray-800 dark:text-white"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
           ☰
         </button>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="md:hidden bg-white dark:bg-gray-800 p-4 shadow-lg"
+        >
+          {['About', 'Work', 'Contact'].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="block py-2 text-gray-800 dark:text-gray-200 hover:text-green-500"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {item}
+            </a>
+          ))}
+        </motion.div>
+      )}
     </header>
   )
 }
